@@ -7,7 +7,6 @@ const Piece = ({ rank, file, piece }) => {
     const { turn } = appState;
 
     const onDragStart = e => {
-        // Only allow dragging if it's the player's turn
         if (turn === piece[0] && (!playerColor || playerColor === piece[0])) {
             e.dataTransfer.effectAllowed = "move";
             e.dataTransfer.setData("text/plain", `${piece},${rank},${file}`);

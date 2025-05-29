@@ -70,16 +70,22 @@ const Pieces = () => {
             y,
             position: currentPosition,
         })
-
+        console.log('local move:', newMove)
         // Update local state immediately
         dispatch(makeNewMove({ 
             newPosition, 
             newMove,
             turn: piece[0] === 'w' ? 'b' : 'w'
         }))
-
+        console.log(socket, gameId)
         // Then emit to server
         if (socket && gameId) {
+            console.log('Emitting moveMade event:', {
+                gameId,
+                newPosition,
+                newMove,
+                piece
+            })
             socket.emit('moveMade', {
                 gameId,
                 newPosition,
